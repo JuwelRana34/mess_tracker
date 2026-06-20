@@ -1,9 +1,21 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Mess Duty Reminder',
-    short_name: 'MessDuty',
+    name: 'amadermess Duty Reminder',
+    short_name: 'amadermess',
     description: 'A Progressive Web App for managing mess duties',
     start_url: '/',
     display: 'standalone',

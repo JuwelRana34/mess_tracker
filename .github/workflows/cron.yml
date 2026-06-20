@@ -3,8 +3,8 @@ name: Mess App Cron Job
 on:
   schedule:
     # দিনে ৩ বার চলবে (বাংলাদেশ সময় সকাল ৮টা, দুপুর ২টা, এবং রাত ৮টা)
-    # গিটহাব UTC টাইম মেনে চলে, তাই ৬ ঘণ্টা মাইনাস করে দেওয়া হয়েছে (2, 8, 14)
-    - cron: '0 2,8,14 * * *'
+    # গিটহাব UTC টাইম মেনে চলে, তাই ৬ ঘণ্টা মাইনাস করে দেওয়া হয়েছে (2, 5, 14)
+    - cron: '0 2,8,10 * * *'
 
 jobs:
   run-cron:
@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: Hit Vercel API
         run: |
-          curl -X POST "https://আপনার-প্রজেক্টের-ডোমেইন.vercel.app/api/sendPush" -H "Content-Length: 0"
+          curl -X POST "https://amadermess.vercel.app/api/sendPush" -H "Content-Length: 0"
 
       # - name: Hit Penalty Check API
       #   run: |
-      #     curl -X GET "https://আপনার-ডোমেইন.vercel.app/api/cron/checkPenalty"
+      #     curl -X GET "https://amadermess.vercel.app/api/cron/checkPenalty"
