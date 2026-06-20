@@ -2,7 +2,7 @@ name: Mess App Cron Job
 
 on:
   schedule:
-    - cron: '* * * * *' # টেস্ট করার জন্য প্রতি মিনিটে সেট করলাম
+    - cron: '0 2,8,14 * * *'
   workflow_dispatch:
 
 jobs:
