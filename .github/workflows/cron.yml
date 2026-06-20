@@ -2,7 +2,7 @@ name: Mess App Cron Job
 
 on:
   schedule:
-    - cron: '0 2,8,14 * * *'
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
