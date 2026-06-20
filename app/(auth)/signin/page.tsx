@@ -1,12 +1,33 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Mail, Lock, Loader2, ArrowRight, Command } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { createClient } from '@/lib/client';
+
+
+
+import { ArrowRight, Command, Loader2, Lock, Mail } from 'lucide-react';
 import { toast } from 'sonner';
+
+
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { createClient } from '@/lib/client';
+import { getErrorMessage } from '@/lib/errorHandler';
+import Link from 'next/link';
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,8 +63,8 @@ export default function Login() {
       toast.success("Login successful!");
       window.location.href = '/'; 
       
-    } catch (err: any) {
-      setError(err.message || "Invalid login credentials.");
+    } catch (err) {
+     setError(getErrorMessage(err));
     } finally {
       setIsLoading(false);
     }
@@ -51,19 +72,17 @@ export default function Login() {
 
   return (
     // Outer container: Flex column on mobile, row on large screens
-    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[hsl(var(--background))]">
-      
+    <div className="flex min-h-screen w-full flex-col bg-[hsl(var(--background))] lg:flex-row">
       {/* ================= LEFT SIDE (Branding) ================= */}
       {/* Hidden on mobile, takes 50% width on large screens */}
-      <div className="hidden lg:flex w-full lg:w-1/2 bg-[hsl(var(--muted))] relative flex-col justify-between p-12 border-r border-[hsl(var(--border))] overflow-hidden">
-        
+      <div className="relative hidden w-full flex-col justify-between overflow-hidden border-r border-[hsl(var(--border))] bg-[hsl(var(--muted))] p-12 lg:flex lg:w-1/2">
         {/* Subtle Background Gradients */}
-        <div className="absolute inset-0 bg-primary/5 z-0" />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 to-transparent z-0" />
+        <div className="bg-primary/5 absolute inset-0 z-0" />
+        <div className="from-primary/10 absolute top-0 left-0 z-0 h-full w-full bg-gradient-to-br to-transparent" />
 
         {/* Brand Logo */}
         <div className="relative z-10 flex items-center text-lg font-bold text-[hsl(var(--foreground))]">
-          <Command className="mr-2 h-6 w-6 text-primary" />
+          <Command className="text-primary mr-2 h-6 w-6" />
           Acme Inc
         </div>
 
@@ -71,7 +90,9 @@ export default function Login() {
         <div className="relative z-10 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-xl font-medium text-[hsl(var(--foreground))]">
-              "This platform has completely transformed how we manage our internal processes. The speed, security, and reliability are unmatched."
+              &quot;This platform has completely transformed how we manage our
+              internal processes. The speed, security, and reliability are
+              unmatched.&quot;
             </p>
             <footer className="text-sm text-[hsl(var(--muted-foreground))]">
               Sofia Davis, CEO
@@ -82,19 +103,17 @@ export default function Login() {
 
       {/* ================= RIGHT SIDE (Form) ================= */}
       {/* Full width on mobile, 50% width on large screens */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 md:p-24">
-        
+      <div className="flex w-full items-center justify-center p-6 sm:p-12 md:p-24 lg:w-1/2">
         {/* Form Container with max-width for readability */}
-        <div className="w-full max-w-[420px] mx-auto flex flex-col justify-center space-y-6">
-          
+        <div className="mx-auto flex w-full max-w-[420px] flex-col justify-center space-y-6">
           <div className="flex flex-col space-y-2 text-center lg:text-left">
             {/* Mobile-only Logo */}
-            <div className="flex lg:hidden items-center justify-center text-lg font-bold mb-4">
-              <Command className="mr-2 h-6 w-6 text-primary" />
+            <div className="mb-4 flex items-center justify-center text-lg font-bold lg:hidden">
+              <Command className="text-primary mr-2 h-6 w-6" />
               Acme Inc
             </div>
-            
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+
+            <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
               Welcome back
             </h1>
             <p className="text-sm text-[hsl(var(--muted-foreground))]">
@@ -102,10 +121,10 @@ export default function Login() {
             </p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-4 w-full">
+          <form onSubmit={handleLogin} className="w-full space-y-4">
             {/* Global Error Banner */}
             {error && (
-              <div className="p-3 text-sm text-red-500 bg-red-500/10 rounded-md border border-red-500/20 text-center">
+              <div className="rounded-md border border-red-500/20 bg-red-500/10 p-3 text-center text-sm text-red-500">
                 {error}
               </div>
             )}
@@ -114,12 +133,12 @@ export default function Login() {
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-2.5 h-4 w-4 text-[hsl(var(--muted-foreground))]" />
-                <Input 
-                  id="email" 
+                <Mail className="absolute top-2.5 left-3 h-4 w-4 text-[hsl(var(--muted-foreground))]" />
+                <Input
+                  id="email"
                   name="email" /* name attribute is REQUIRED for FormData */
-                  type="email" 
-                  placeholder="name@example.com" 
+                  type="email"
+                  placeholder="name@example.com"
                   required
                   className="pl-9"
                   disabled={isLoading}
@@ -131,16 +150,19 @@ export default function Login() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <a href="/forgot-password" className="text-sm font-medium text-primary hover:underline underline-offset-4 transition-all">
+                <a
+                  href="/forgot-password"
+                  className="text-primary text-sm font-medium underline-offset-4 transition-all hover:underline"
+                >
                   Forgot password?
                 </a>
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-[hsl(var(--muted-foreground))]" />
-                <Input 
-                  id="password" 
+                <Lock className="absolute top-2.5 left-3 h-4 w-4 text-[hsl(var(--muted-foreground))]" />
+                <Input
+                  id="password"
                   name="password" /* name attribute is REQUIRED for FormData */
-                  type="password" 
+                  type="password"
                   placeholder="••••••••"
                   required
                   className="pl-9"
@@ -151,15 +173,17 @@ export default function Login() {
 
             {/* Submit Button */}
             <Button
-              type="submit" 
-              className="w-full relative group overflow-hidden mt-6" 
+              type="submit"
+              className="group relative mt-6 w-full overflow-hidden"
               disabled={isLoading}
             >
-              <span className={`flex items-center justify-center transition-all duration-300 ${isLoading ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+              <span
+                className={`flex items-center justify-center transition-all duration-300 ${isLoading ? 'translate-y-2 opacity-0' : 'translate-y-0 opacity-100'}`}
+              >
                 Sign In
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
-              
+
               {isLoading && (
                 <span className="absolute inset-0 flex items-center justify-center">
                   <Loader2 className="h-5 w-5 animate-spin" />
@@ -170,13 +194,23 @@ export default function Login() {
 
           {/* Footer Link */}
           <p className="px-8 text-center text-sm text-[hsl(var(--muted-foreground))]">
-            Don't have an account?{" "}
-            <a href="/signup" className="font-semibold text-primary hover:underline underline-offset-4 transition-all">
+            Don&apos;t have an account?{' '}
+            <Link
+              href="/signup"
+              className="text-primary font-semibold underline-offset-4 transition-all hover:underline"
+            >
               Sign up
-            </a>
+            </Link>
+            <br />
+            <Link
+              href="/"
+              className="text-primary font-semibold underline-offset-4 transition-all hover:underline capitalize underline mt-2 inline-block"
+            >
+              back to home
+            </Link>
           </p>
         </div>
       </div>
     </div>
-  );
+  )
 }
