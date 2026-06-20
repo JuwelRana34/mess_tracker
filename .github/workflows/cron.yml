@@ -2,7 +2,7 @@ name: Mess App Cron Job
 
 on:
   schedule:
-    - cron: '0 2,8,14 * * *'
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
@@ -10,4 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Hit Vercel API
-        run: curl -X POST "https://amadermess.vercel.app/api/sendPush" -H "Content-Length: 0"
+        run: |
+          curl -X POST "https://amadermess.vercel.app/api/sendPush" -H "Content-Length: 0"
