@@ -1,38 +1,72 @@
 'use client'
 
-import { useState } from 'react'
+import { useState } from 'react';
+
+
 
 // Hook ইমপোর্ট করুন
 
-import {
-  ArrowLeft,
-  CheckCircle2,
-  Gift,
-  Loader2,
-  LogOut,
-  PlusCircle,
-  ShowerHead,
-  Trash2,
-  Users,
-  XCircle,
-} from 'lucide-react'
+import { ArrowLeft, CheckCircle2, Gift, Loader2, LogOut, PlusCircle, ShowerHead, Trash2, Users, XCircle } from 'lucide-react';
 
-import { PushNotificationBtn } from '@/components/shared/NotificationBtn'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { getErrorMessage } from '@/lib/errorHandler'
 
-import { TaskRecord, UserProfile, useMess } from './hooks/useMess'
-import { useCurrentUser } from '@/hooks/useCurrentUser'
+
+import { PushNotificationBtn } from '@/components/shared/NotificationBtn';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { getErrorMessage } from '@/lib/errorHandler';
+
+
+
+import { TaskRecord, UserProfile, useMess } from './hooks/useMess';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // -------------------------------------------------------------
 // MAIN COMPONENT
@@ -53,7 +87,7 @@ export default function ProfilePage() {
   if (isLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-gray-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-gray-600" /> loading...
       </div>
     )
   }
@@ -266,9 +300,9 @@ function DashboardView({
   )
 
   return (
-    <div className="container mx-auto max-w-4xl space-y-6 p-4 md:p-8">
+    <div className="container mx-auto max-w-4xl space-y-6 md:p-8">
       {/* Header */}
-      <div className="flex flex-col items-center gap-6 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:flex-row md:items-start md:p-8 dark:border-gray-800 dark:bg-gray-900">
+      <div className="flex flex-col items-center gap-6 border border-gray-100 bg-white p-6 shadow-sm md:flex-row md:items-start md:rounded-2xl md:p-8 dark:border-gray-800 dark:bg-gray-900">
         <Avatar className="h-24 w-24 border-4 border-blue-50 shadow-sm md:h-28 md:w-28 dark:border-blue-900/30">
           <AvatarImage
             src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.name}`}
@@ -323,7 +357,7 @@ function DashboardView({
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Card className="relative overflow-hidden border-none bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md">
+        <Card className="relative overflow-hidden rounded-none border-none bg-linear-to-br from-emerald-500 to-teal-600 text-white shadow-md md:rounded-2xl">
           <div className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 opacity-10">
             <Gift className="h-32 w-32" />
           </div>
@@ -340,7 +374,7 @@ function DashboardView({
           </CardContent>
         </Card>
 
-        <Card className="border-gray-100 shadow-sm dark:border-gray-800">
+        <Card className="md:rounded-2xl border-gray-100 rounded-none shadow-sm dark:border-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg font-bold text-gray-700 dark:text-gray-300">
               Total Tasks Completed
@@ -358,7 +392,7 @@ function DashboardView({
       </div>
 
       {/* Activity History */}
-      <Card className="border-gray-100 shadow-sm dark:border-gray-800">
+      <Card className="rounded-none border-gray-100 px-1 shadow-sm md:rounded-2xl dark:border-gray-800">
         <CardHeader>
           <CardTitle className="text-xl font-bold">Activity History</CardTitle>
           <CardDescription className="text-md">
@@ -366,7 +400,7 @@ function DashboardView({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="all" className="w-full">
+          <Tabs defaultValue="all" className="w-full px-0">
             <TabsList className="mb-6 rounded-lg bg-gray-100 p-1 dark:bg-gray-800">
               <TabsTrigger value="all" className="rounded-md px-6">
                 All History
@@ -379,7 +413,7 @@ function DashboardView({
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="all" className="space-y-3">
+            <TabsContent value="all" className="space-y-3 px-0">
               {tasks.length === 0 ? (
                 <div className="rounded-xl border border-dashed border-gray-200 bg-gray-50 py-10 text-center text-gray-500 dark:border-gray-700 dark:bg-gray-800/30">
                   No tasks have been created in this mess yet.
@@ -466,7 +500,7 @@ function TaskCard({
   onSkip: (id: string, groupId: string) => void
 }) {
   return (
-    <div className="flex items-center justify-between rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800/50">
+    <div className=" md:flex md:items-center md:justify-between rounded-xl border border-gray-100 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800/50">
       <div className="flex items-center gap-4">
         <div
           className={`rounded-full p-3 shadow-inner ${task.type === 'trash' ? 'bg-orange-50 text-orange-600 dark:bg-orange-950/30' : 'bg-cyan-50 text-cyan-600 dark:bg-cyan-950/30'}`}
@@ -488,7 +522,7 @@ function TaskCard({
         </div>
       </div>
 
-      <div className="text-right">
+      <div className="text-right space-x-2">
         {task.status === 'completed' ? (
           task.assigned_to === task.completed_by ? (
             <Badge
@@ -511,7 +545,7 @@ function TaskCard({
             </div>
           )
         ) : task.status === 'missed' ? (
-          <div className="flex flex-col items-end gap-2">
+          <div className=" flex justify-center md:justify-end gap-2 py-4">
             <Badge
               variant="outline"
               className="border-red-200 bg-red-50 px-3 py-1 text-red-600 dark:bg-red-900/20"
