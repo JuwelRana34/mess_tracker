@@ -1,12 +1,46 @@
 'use client'
 
-import Link from 'next/link'
+import Link from 'next/link';
 
-import { ArrowRight, CheckCircle, ShieldCheck, Zap } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
+
+import { ArrowRight, CheckCircle, ShieldCheck, Zap } from 'lucide-react';
+
+
+
+import { testPushAction } from '@/actions/testPush';
+import { Button } from '@/components/ui/button';
+import { sendPushNotification } from '@/lib/push';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default function HomePage() {
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Hero Section */}
@@ -19,12 +53,12 @@ export default function HomePage() {
           ময়লা ফেলার ডিউটি থেকে টয়লেট পরিষ্কার— সবকিছুর হিসাব থাকবে আপনার পকেটে।
           ফাঁকিবাজির দিন শেষ, এখন সবার কাজ হবে সময়ের সাথে।
         </p>
-
+        
         <div className="flex justify-center gap-4">
           <Link href="/profile">
             <Button
               size="lg"
-              className="bg-blue-600 px-8 text-lg hover:bg-blue-700 text-white"
+              className="bg-blue-600 px-8 text-lg text-white hover:bg-blue-700"
             >
               এখনই শুরু করুন <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

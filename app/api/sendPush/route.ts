@@ -1,7 +1,96 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 
-import { createClient } from '@supabase/supabase-js'
-import webpush from 'web-push'
+
+
+import { createClient } from '@supabase/supabase-js';
+import webpush from 'web-push';
+import { randomSms } from '@/lib/randomSms';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 webpush.setVapidDetails(
   process.env.VAPID_SUBJECT!,
@@ -56,16 +145,7 @@ export async function POST() {
         const taskName =
           task.type === 'trash' ? 'ময়লা ফেলার' : 'টয়লেট পরিষ্কার করার'
 
-        // 🌟 মেসেজের একটি লিস্ট তৈরি করা
-        const messages = [
-          `ভাই, আজকের ${taskName} ডিউটি কিন্তু এখনো বাকি! ⏰ পয়েন্ট মাইনাস হওয়ার আগেই জলদি সেরে ফেলুন।`,
-          `সাবধান! 🚨 আপনার ${taskName} ডিউটি এখনো পেন্ডিং। ফাঁকিবাজি করলেই কিন্তু ১ ক্রেডিট কাটা যাবে!`,
-          `অ্যাকশন টাইম! 🚀 আপনার ${taskName} ডিউটি এখনো অসম্পূর্ণ। জলদি কাজটা সেরে ফেলুন।`,
-          `মেসের সবাই আপনার দিকে তাকিয়ে আছে! 👀 আজকের ${taskName} ডিউটি পেন্ডিং। মাইনাস খাওয়ার আগে ডান করুন।`,
-        ]
-
-        // 🎲 লিস্ট থেকে যেকোনো একটি র‍্যান্ডম মেসেজ বেছে নেওয়া
-        const randomBody = messages[Math.floor(Math.random() * messages.length)]
+        const randomBody = randomSms(taskName)
 
         const payload = JSON.stringify({
           title: '🚨 রিমাইন্ডার: ডিউটি বাকি আছে!',
