@@ -1,19 +1,13 @@
 'use server'
 
-import { sendPushNotification } from '@/lib/push';
+import { sendPushNotification } from '@/lib/push'
 
-
-
-
-
-
-
-export async function testPushAction(userId: string) {
+export async function testPushAction(userId: string, title: string, message: string) {
   try {
     const success = await sendPushNotification(
       userId,
-      'hey chodom🚀',
-      'হ্যালো! 👋 আপনার আজকের balpaknami টাস্কটি এখনো পেন্ডিং রয়েছে। নির্ধারিত সময়ের আগেই অনুগ্রহ করে কাজটি সম্পন্ন করুন। '
+      title,
+      message
     )
     return { success }
   } catch (error) {

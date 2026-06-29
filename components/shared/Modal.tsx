@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dialog'
 
 interface ModalProps {
-  trigger?: React.ReactNode // মোডাল খোলার জন্য ট্রিগার এলিমেন্ট
+  trigger?: React.ReactNode
   title: string
   description?: string
   children: React.ReactNode

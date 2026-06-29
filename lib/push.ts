@@ -33,7 +33,13 @@ export async function sendPushNotification(
     }
 
     // পুশ মেসেজ পাঠানো
-    const payload = JSON.stringify({ title, body, url })
+    const payload = JSON.stringify({
+      title,
+      body,
+      url,
+      vibrate: [200, 100, 200, 100, 200],
+      requireInteraction: true,
+    })
     await webpush.sendNotification(user.push_subscription, payload)
 
     console.log(`✅ Push notification sent to User ${userId}`)

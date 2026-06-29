@@ -10,6 +10,7 @@ import { ArrowLeft, CheckCircle2, Gift, Loader2, LogOut, PlusCircle, ShowerHead,
 
 
 
+import UrgentNotice from '@/components/features/UrgentNotice';
 import { PushNotificationBtn } from '@/components/shared/NotificationBtn';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +22,8 @@ import { getErrorMessage } from '@/lib/errorHandler';
 
 
 import { TaskRecord, UserProfile, useMess } from './hooks/useMess';
+
+
 
 
 
@@ -83,7 +86,7 @@ export default function ProfilePage() {
     skipTask,
     signOut,
   } = useMess()
-  
+
   if (isLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -374,7 +377,7 @@ function DashboardView({
           </CardContent>
         </Card>
 
-        <Card className="md:rounded-2xl border-gray-100 rounded-none shadow-sm dark:border-gray-800">
+        <Card className="rounded-none border-gray-100 shadow-sm md:rounded-2xl dark:border-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg font-bold text-gray-700 dark:text-gray-300">
               Total Tasks Completed
@@ -479,6 +482,8 @@ function DashboardView({
           </Tabs>
         </CardContent>
       </Card>
+
+      {user.role === 'admin' ? <UrgentNotice /> : ''}
     </div>
   )
 }
@@ -500,7 +505,7 @@ function TaskCard({
   onSkip: (id: string, groupId: string) => void
 }) {
   return (
-    <div className=" md:flex md:items-center md:justify-between rounded-xl border border-gray-100 bg-white p-3 shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800/50">
+    <div className="rounded-xl border border-gray-100 bg-white p-3 shadow-sm transition-all hover:shadow-md md:flex md:items-center md:justify-between dark:border-gray-700 dark:bg-gray-800/50">
       <div className="flex items-center gap-4">
         <div
           className={`rounded-full p-3 shadow-inner ${task.type === 'trash' ? 'bg-orange-50 text-orange-600 dark:bg-orange-950/30' : 'bg-cyan-50 text-cyan-600 dark:bg-cyan-950/30'}`}
@@ -511,6 +516,7 @@ function TaskCard({
             <ShowerHead className="h-6 w-6" />
           )}
         </div>
+
         <div>
           <p className="text-lg font-bold text-gray-900 capitalize dark:text-white">
             {task.type === 'trash' ? 'Moila Felano' : 'Toilet Porishkar'}
@@ -522,7 +528,7 @@ function TaskCard({
         </div>
       </div>
 
-      <div className="text-right space-x-2">
+      <div className="space-x-2 text-right">
         {task.status === 'completed' ? (
           task.assigned_to === task.completed_by ? (
             <Badge
@@ -545,7 +551,7 @@ function TaskCard({
             </div>
           )
         ) : task.status === 'missed' ? (
-          <div className=" flex justify-center md:justify-end gap-2 py-4">
+          <div className="flex justify-center gap-2 py-4 md:justify-end">
             <Badge
               variant="outline"
               className="border-red-200 bg-red-50 px-3 py-1 text-red-600 dark:bg-red-900/20"
@@ -603,6 +609,8 @@ function TaskCard({
           </div>
         )}
       </div>
+
+     
     </div>
   )
 }

@@ -1,26 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react'
 
-
-
-import { createClient } from '@/lib/client';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import { createClient } from '@/lib/client'
 
 // --- Types ---
 export interface UserProfile {

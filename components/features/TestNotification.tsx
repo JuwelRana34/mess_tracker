@@ -7,7 +7,7 @@ import { testPushAction } from "@/actions/testPush"
 export default function TestNotification() {
   const handleSendNotification = async () => {
     // সরাসরি lib/push না ডেকে, সার্ভার অ্যাকশন কল করছি
-    const result = await testPushAction('58f7c054-fb87-4226-ac06-c5e9f4c0b6f8')
+    const result = await testPushAction('58f7c054-fb87-4226-ac06-c5e9f4c0b6f8', 'Test notification from Next.js 13.4 app', 'This is a test notification sent from the Next.js 13.4 app using server actions.')
 
     if (result.success) {
       alert('Notification sent!')

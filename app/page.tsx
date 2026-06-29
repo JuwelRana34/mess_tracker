@@ -39,7 +39,24 @@ import { sendPushNotification } from '@/lib/push';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default function HomePage() {
+
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -53,7 +70,7 @@ export default function HomePage() {
           ময়লা ফেলার ডিউটি থেকে টয়লেট পরিষ্কার— সবকিছুর হিসাব থাকবে আপনার পকেটে।
           ফাঁকিবাজির দিন শেষ, এখন সবার কাজ হবে সময়ের সাথে।
         </p>
-        
+      
         <div className="flex justify-center gap-4">
           <Link href="/profile">
             <Button
